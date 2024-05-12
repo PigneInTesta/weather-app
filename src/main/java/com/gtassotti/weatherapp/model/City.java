@@ -16,6 +16,15 @@ public class City {
     @SerializedName("country_code")
     private String countryCode;
 
+    public City(Integer id, String name, Double latitude, Double longitude, String country, String countryCode) {
+        this.id = id;
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.country = country;
+        this.countryCode = countryCode;
+    }
+
     public Integer getId() {
         return id;
     }
