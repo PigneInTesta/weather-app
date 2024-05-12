@@ -9,12 +9,15 @@ public class Weather {
     private Double latitude;
     @SerializedName("longitude")
     private Double longitude;
+    @SerializedName("current")
+    private WeatherCurrent currentInfo;
     @SerializedName("hourly")
     private WeatherInformation informationHourly;
 
-    public Weather(Double latitude, Double longitude, List<String> timeList, List<Double> temperatureList, List<Double> relativeHumidityList, List<Integer> probabilityOfPrecipitation, List<Double> precipitationSum, List<Integer> weatherCode) {
+    public Weather(Double latitude, Double longitude, Double currTemperature, Integer weatherCodeCurrent, List<String> timeList, List<Double> temperatureList, List<Double> relativeHumidityList, List<Integer> probabilityOfPrecipitation, List<Double> precipitationSum, List<Integer> weatherCode) {
         this.latitude = latitude;
         this.longitude = longitude;
+        this.currentInfo = new WeatherCurrent(currTemperature, weatherCodeCurrent);
         this.informationHourly = new WeatherInformation(timeList, temperatureList, relativeHumidityList, probabilityOfPrecipitation, precipitationSum, weatherCode);
     }
 
@@ -34,6 +37,14 @@ public class Weather {
         this.longitude = longitude;
     }
 
+    public WeatherCurrent getCurrentInfo() {
+        return currentInfo;
+    }
+
+    public void setCurrentInfo(Double currTemperature, Integer weatherCodeCurrent) {
+        this.currentInfo = new WeatherCurrent(currTemperature, weatherCodeCurrent);
+    }
+
     public WeatherInformation getInformationHourly() {
         return informationHourly;
     }
@@ -48,6 +59,7 @@ public class Weather {
         return "Weather{" +
                 "latitude=" + latitude +
                 ", longitude=" + longitude +
+                ", currTemperature=" + currentInfo +
                 ", informationHourly=" + informationHourly +
                 '}';
     }

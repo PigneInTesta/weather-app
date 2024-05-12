@@ -54,9 +54,9 @@ public class API {
         String urlString = "https://api.open-meteo.com/v1/forecast?" +
                 "latitude=" + city.getLatitude() +
                 "&longitude=" + city.getLongitude() +
-                "&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,precipitation,weather_code";
+                "&current=temperature_2m,weather_code&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,precipitation,weather_code";
 
-        Weather weather = new Weather(0.0, 0.0, null, null, null, null, null, null);
+        Weather weather = new Weather(0.0, 0.0, 0.0, null, null, null, null, null, null, null);
         try {
             HttpURLConnection connection = fetchApiResponse(urlString);
             if (connection.getResponseCode() != 200){

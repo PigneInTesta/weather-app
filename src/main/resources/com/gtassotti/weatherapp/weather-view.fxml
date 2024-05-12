@@ -18,9 +18,29 @@
          <AnchorPane prefHeight="454.0" prefWidth="600.0">
             <children>
                <TextField fx:id="cityToSearch" layoutX="403.0" layoutY="14.0" prefHeight="25.0" prefWidth="150.0" />
-               <Label fx:id="temperatureField" layoutX="176.0" layoutY="129.0" prefHeight="42.0" prefWidth="223.0">
+               <Label fx:id="cityName" layoutX="262.0" layoutY="145.0">
                   <font>
                      <Font size="24.0" />
+                  </font>
+               </Label>
+               <Label fx:id="temperatureField" layoutX="260.0" layoutY="163.0" prefHeight="59.0" prefWidth="106.0">
+                  <font>
+                     <Font name="Segoe UI Semilight" size="48.0" />
+                  </font>
+               </Label>
+               <Label alignment="CENTER" layoutX="244.0" layoutY="220.0" prefHeight="25.0" prefWidth="117.0" textAlignment="CENTER">
+                  <font>
+                     <Font name="Segoe UI Semilight" size="16.0" />
+                  </font>
+               </Label>
+               <Label fx:id="highTemp" layoutX="262.0" layoutY="245.0" prefHeight="21.0" prefWidth="52.0">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="14.0" />
+                  </font>
+               </Label>
+               <Label fx:id="lowTemp" layoutX="317.0" layoutY="245.0" prefHeight="22.0" prefWidth="43.0">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="14.0" />
                   </font>
                </Label>
                <Button layoutX="560.0" layoutY="14.0" mnemonicParsing="false" onAction="#onButtonClickSearch" prefHeight="27.0" prefWidth="31.0" text="🔍">

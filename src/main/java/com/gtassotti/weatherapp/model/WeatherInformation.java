@@ -1,9 +1,13 @@
 package com.gtassotti.weatherapp.model;
 
 import com.google.gson.annotations.SerializedName;
+
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class WeatherInformation {
     @SerializedName("time")
@@ -91,8 +95,22 @@ public class WeatherInformation {
         return currentDateTime.format(formatter);
     }
 
-    public Double getCurrentTemp(){
-        return returnEquivalentValue(getCurrentDateTime(), temperatureList);
+    public Double getMinTemp(String dateTime) {
+        List<Double> tempListOfDay = getDataOfDay(getDayOfWeek(dateTime), temperatureList);
+        return tempListOfDay.stream().min((o1, o2) -> o1.compareTo(o2)).orElseThrow(NoSuchElementException::new);
+    }
+
+    public Double getHighTemp(String dateTime) {
+        List<Double> tempListOfDay = getDataOfDay(getDayOfWeek(dateTime), temperatureList);
+        return tempListOfDay.stream().max((o1, o2) -> o1.compareTo(o2)).orElseThrow(NoSuchElementException::new);
+    }
+
+    public DayOfWeek getDayOfWeek(String dateTime) {
+        return convertDateTime(dateTime).getDayOfWeek();
+    }
+
+    public <T> List<T> getDataOfDay(DayOfWeek day, List<T> src) {
+        return new ArrayList<>(src.subList((day.getValue() - 1) * 24, 23 + ((day.getValue() - 1) * 24)));
     }
 
     @Override

@@ -3,6 +3,7 @@ module com.gtassotti.weatherapp {
     requires javafx.fxml;
     requires java.desktop;
     requires com.google.gson;
+    requires org.controlsfx.controls;
 
 
     opens com.gtassotti.weatherapp to javafx.fxml;
