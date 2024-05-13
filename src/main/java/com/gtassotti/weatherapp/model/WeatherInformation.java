@@ -14,7 +14,7 @@ public class WeatherInformation {
     private List<String> timeList;
     @SerializedName("temperature_2m")
     private List<Double> temperatureList;
-    @SerializedName("relative_humidity")
+    @SerializedName("relative_humidity_2m")
     private List<Double> relativeHumidityList;
     @SerializedName("precipitation_probability")
     private List<Integer> probabilityOfPrecipitation;
@@ -23,13 +23,13 @@ public class WeatherInformation {
     @SerializedName("weather_code")
     private List<Integer> weatherCode;
 
-    public WeatherInformation(List<String> timeList, List<Double> temperatureList, List<Double> relativeHumidityList, List<Integer> probabilityOfPrecipitation, List<Double> precipitationSum, List<Integer> weatherCode) {
-        this.timeList = timeList;
-        this.temperatureList = temperatureList;
-        this.relativeHumidityList = relativeHumidityList;
-        this.probabilityOfPrecipitation = probabilityOfPrecipitation;
-        this.precipitationSum = precipitationSum;
-        this.weatherCode = weatherCode;
+    public WeatherInformation() {
+        this.timeList = new ArrayList<>();
+        this.temperatureList = new ArrayList<>();
+        this.relativeHumidityList = new ArrayList<>();
+        this.probabilityOfPrecipitation = new ArrayList<>();
+        this.precipitationSum = new ArrayList<>();
+        this.weatherCode = new ArrayList<>();
     }
 
     public List<String> getTimeList() {

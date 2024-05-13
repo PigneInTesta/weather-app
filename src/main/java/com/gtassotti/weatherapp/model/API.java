@@ -56,7 +56,7 @@ public class API {
                 "&longitude=" + city.getLongitude() +
                 "&current=temperature_2m,weather_code&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,precipitation,weather_code";
 
-        Weather weather = new Weather(0.0, 0.0, 0.0, null, null, null, null, null, null, null);
+        Weather weather = new Weather(0.0, 0.0, 0.0, null);
         try {
             HttpURLConnection connection = fetchApiResponse(urlString);
             if (connection.getResponseCode() != 200){

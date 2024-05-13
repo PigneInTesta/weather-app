@@ -4,6 +4,7 @@ import com.gtassotti.weatherapp.model.API;
 import com.gtassotti.weatherapp.model.City;
 import com.gtassotti.weatherapp.model.Weather;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ public class WeatherController {
     private Label highTemp;
     @FXML
     private TextField cityToSearch;
+    @FXML
+    private ComboBox<City> results;
 
 
     private City currCity;
@@ -30,7 +33,8 @@ public class WeatherController {
     @FXML
     protected void initialize()  {
         //setTemperature();
-        //search();
+        results.setEditable(true);
+        search();
     }
 
     @FXML
@@ -69,9 +73,14 @@ public class WeatherController {
     protected void setHighTemp() {
         highTemp.setText("H:" + currWeather.getInformationHourly().getHighTemp(currWeather.getInformationHourly().getCurrentDateTime()).toString() + "°");
     }
-    protected void search() {
-        //cityToSearch.textProperty().addListener(((observableValue, oldText, newText) -> {API.getCityData(observableValue.getValue());}));
-    }
 
+    protected void search() {
+        results.getEditor().textProperty().addListener(((obs, oldValue, newValue) -> {
+            if (!results.getItems().isEmpty()) {
+                results.getItems().clear();
+            }
+            results.getItems().addAll(API.getCityData(obs.getValue()));
+        }));
+    }
 
 }

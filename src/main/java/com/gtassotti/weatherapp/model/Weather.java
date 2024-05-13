@@ -2,8 +2,6 @@ package com.gtassotti.weatherapp.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 public class Weather {
     @SerializedName("latitude")
     private Double latitude;
@@ -14,11 +12,11 @@ public class Weather {
     @SerializedName("hourly")
     private WeatherInformation informationHourly;
 
-    public Weather(Double latitude, Double longitude, Double currTemperature, Integer weatherCodeCurrent, List<String> timeList, List<Double> temperatureList, List<Double> relativeHumidityList, List<Integer> probabilityOfPrecipitation, List<Double> precipitationSum, List<Integer> weatherCode) {
+    public Weather(Double latitude, Double longitude, Double currTemperature, Integer weatherCodeCurrent) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.currentInfo = new WeatherCurrent(currTemperature, weatherCodeCurrent);
-        this.informationHourly = new WeatherInformation(timeList, temperatureList, relativeHumidityList, probabilityOfPrecipitation, precipitationSum, weatherCode);
+        this.informationHourly = new WeatherInformation();
     }
 
     public Double getLatitude() {
@@ -49,8 +47,8 @@ public class Weather {
         return informationHourly;
     }
 
-    public void setInformationHourly(List<String> timeList, List<Double> temperatureList, List<Double> relativeHumidityList, List<Integer> probabilityOfPrecipitation, List<Double> precipitationSum, List<Integer> weatherCode) {
-        this.informationHourly = new WeatherInformation(timeList, temperatureList, relativeHumidityList, probabilityOfPrecipitation, precipitationSum, weatherCode);
+    public void setInformationHourly() {
+        this.informationHourly = new WeatherInformation();
 
     }
 
