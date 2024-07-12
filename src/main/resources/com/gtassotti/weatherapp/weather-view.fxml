@@ -18,38 +18,38 @@
           </padding>
          <AnchorPane prefHeight="454.0" prefWidth="600.0">
             <children>
-               <TextField fx:id="cityToSearch" layoutX="403.0" layoutY="14.0" prefHeight="25.0" prefWidth="150.0" />
-               <Label fx:id="cityName" layoutX="262.0" layoutY="145.0">
+               <TextField fx:id="cityToSearch" layoutX="403.0" layoutY="14.0" prefHeight="27.0" prefWidth="150.0" AnchorPane.rightAnchor="47.0" />
+               <Label fx:id="cityName" alignment="CENTER" contentDisplay="CENTER" layoutX="152.0" layoutY="159.0" prefHeight="35.0" prefWidth="302.0" textOverrun="CENTER_WORD_ELLIPSIS">
                   <font>
                      <Font size="24.0" />
                   </font>
                </Label>
-               <Label fx:id="temperatureField" layoutX="260.0" layoutY="163.0" prefHeight="59.0" prefWidth="106.0">
+               <Label fx:id="temperatureField" alignment="CENTER" layoutX="253.0" layoutY="177.0" prefHeight="59.0" prefWidth="106.0">
                   <font>
                      <Font name="Segoe UI Semilight" size="48.0" />
                   </font>
                </Label>
-               <Label alignment="CENTER" layoutX="244.0" layoutY="220.0" prefHeight="25.0" prefWidth="117.0" textAlignment="CENTER">
+               <Label fx:id="weatherInformation" alignment="CENTER" layoutX="244.0" layoutY="229.0" prefHeight="25.0" prefWidth="117.0" textAlignment="CENTER">
                   <font>
-                     <Font name="Segoe UI Semilight" size="16.0" />
+                     <Font name="Segoe UI Semilight" size="24.0" />
                   </font>
                </Label>
-               <Label fx:id="highTemp" layoutX="262.0" layoutY="245.0" prefHeight="21.0" prefWidth="52.0">
-                  <font>
-                     <Font name="Segoe UI Semibold" size="14.0" />
-                  </font>
-               </Label>
-               <Label fx:id="lowTemp" layoutX="317.0" layoutY="245.0" prefHeight="22.0" prefWidth="43.0">
+               <Label fx:id="highTemp" layoutX="251.0" layoutY="259.0" prefHeight="21.0" prefWidth="48.0">
                   <font>
                      <Font name="Segoe UI Semibold" size="14.0" />
                   </font>
                </Label>
-               <Button layoutX="560.0" layoutY="14.0" mnemonicParsing="false" onAction="#onButtonClickSearch" prefHeight="27.0" prefWidth="31.0" text="🔍">
+               <Label fx:id="lowTemp" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="317.0" layoutY="259.0" prefHeight="22.0" prefWidth="43.0">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="14.0" />
+                  </font>
+               </Label>
+               <Button layoutX="560.0" layoutY="14.0" mnemonicParsing="false" onAction="#onButtonClickSearch" prefHeight="20.0" prefWidth="31.0" text="🔍" AnchorPane.rightAnchor="9.0">
                   <font>
                      <Font size="13.0" />
                   </font>
                </Button>
-               <ComboBox fx:id="results" layoutX="403.0" layoutY="57.0" prefWidth="150.0" />
+               <ComboBox fx:id="results" editable="true" layoutX="403.0" layoutY="57.0" prefHeight="25.0" prefWidth="188.0" AnchorPane.rightAnchor="9.0" />
             </children>
          </AnchorPane>
       </VBox>

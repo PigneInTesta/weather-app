@@ -3,6 +3,7 @@ package com.gtassotti.weatherapp.controller;
 import com.gtassotti.weatherapp.model.API;
 import com.gtassotti.weatherapp.model.City;
 import com.gtassotti.weatherapp.model.Weather;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -24,6 +25,8 @@ public class WeatherController {
     private TextField cityToSearch;
     @FXML
     private ComboBox<City> results;
+    @FXML
+    private Label weatherInformation;
 
 
     private City currCity;
@@ -34,6 +37,7 @@ public class WeatherController {
     protected void initialize()  {
         //setTemperature();
         results.setEditable(true);
+        results.setVisibleRowCount(10);
         search();
     }
 
@@ -52,8 +56,9 @@ public class WeatherController {
             setTemperature();
             setLowTemp();
             setHighTemp();
+            setWeatherInformation();
         } else {
-            System.out.println("No city name in the text field");
+            System.out.println("Error: No city name in the text field");
         }
     }
 
@@ -74,12 +79,18 @@ public class WeatherController {
         highTemp.setText("H:" + currWeather.getInformationHourly().getHighTemp(currWeather.getInformationHourly().getCurrentDateTime()).toString() + "°");
     }
 
+    protected void setWeatherInformation() {
+        weatherInformation.setText(currWeather.getCurrentInfo().getWeatherInterpretation());
+    }
+
     protected void search() {
         results.getEditor().textProperty().addListener(((obs, oldValue, newValue) -> {
             if (!results.getItems().isEmpty()) {
                 results.getItems().clear();
+            } else {
+                results.getItems().setAll(FXCollections.observableArrayList(API.getCityData(obs.getValue())));
+                results.show();
             }
-            results.getItems().addAll(API.getCityData(obs.getValue()));
         }));
     }
 
