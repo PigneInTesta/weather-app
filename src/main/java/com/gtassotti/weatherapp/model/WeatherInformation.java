@@ -5,9 +5,8 @@ import com.google.gson.annotations.SerializedName;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class WeatherInformation {
     @SerializedName("time")
@@ -22,6 +21,8 @@ public class WeatherInformation {
     private List<Double> precipitationSum;
     @SerializedName("weather_code")
     private List<Integer> weatherCode;
+
+    private static final int DAYS_OF_WEEK = 7;
 
     public WeatherInformation() {
         this.timeList = new ArrayList<>();
@@ -111,6 +112,48 @@ public class WeatherInformation {
 
     public <T> List<T> getDataOfDay(DayOfWeek day, List<T> src) {
         return new ArrayList<>(src.subList((day.getValue() - 1) * 24, 23 + ((day.getValue() - 1) * 24)));
+    }
+
+    public String getWeatherIcon(DayOfWeek day) {
+        HashMap<Integer, String> toWeatherIcon = new HashMap<>();
+
+        toWeatherIcon.put(0, "/icons/ClearSky.png");
+        toWeatherIcon.put(1, "/icons/ClearSky.png");
+        toWeatherIcon.put(2, "/icons/PartlyCloudy.png");
+        toWeatherIcon.put(3, "/icons/Cloudy.png");
+        toWeatherIcon.put(45, "/icons/Fog.png");
+        toWeatherIcon.put(48, "/icons/Fog.png");
+        toWeatherIcon.put(51, "/icons/LightDrizzle.png");
+        toWeatherIcon.put(53, "/icons/ModerateDenseDrizzle-Rain.png");
+        toWeatherIcon.put(55, "/icons/ModerateDenseDrizzle-Rain.png");
+        toWeatherIcon.put(61, "/icons/LightDrizzle.png");
+        toWeatherIcon.put(63, "/icons/ModerateDenseDrizzle-Rain.png");
+        toWeatherIcon.put(65, "/icons/HeavyRain.png");
+        toWeatherIcon.put(66, "/icons/SnowShowers.png");
+        toWeatherIcon.put(67, "/icons/SnowShowers.png");
+        toWeatherIcon.put(71, "/icons/SlightSnowfall.png");
+        toWeatherIcon.put(73, "/icons/SlightSnowfall.png");
+        toWeatherIcon.put(75, "/icons/HeavySnowFall.png");
+        toWeatherIcon.put(77, "/icons/HeavySnowFall.png");
+        toWeatherIcon.put(80, "/icons/LightDrizzle.png");
+        toWeatherIcon.put(81, "/icons/ModerateDenseDrizzle-Rain.png");
+        toWeatherIcon.put(82, "/icons/HeavyRain.png");
+        toWeatherIcon.put(85, "/icons/SnowShowers.png");
+        toWeatherIcon.put(86, "/icons/SnowShowers.png");
+        toWeatherIcon.put(95, "/icons/SlightThunderstorm.png");
+
+        List<Integer> weatherCodeList = getDataOfDay(day, weatherCode);
+        Map<Integer, Integer> weatherCodeAverage = new HashMap<>();
+        for (Integer code : weatherCodeList) {
+            if (weatherCodeAverage.containsKey(code)) {
+                weatherCodeAverage.put(code, weatherCodeAverage.get(code) + 1);
+            } else {
+                weatherCodeAverage.put(code, 1);
+            }
+        }
+
+        Integer weatherCodeOfTheDay = Collections.max(weatherCodeAverage.entrySet(), Map.Entry.comparingByValue()).getKey();
+        return toWeatherIcon.get(weatherCodeOfTheDay);
     }
 
     @Override
