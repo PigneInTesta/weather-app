@@ -86,13 +86,13 @@ public class WeatherInformation {
         this.weatherCode = weatherCode;
     }
 
-    public <T> T returnEquivalentValue(String dateTime, List<T> dst) {
+    public <T> T getEquivalentValue(String dateTime, List<T> dst) {
         return dst.get(timeList.indexOf(dateTime));
     }
 
-    public LocalDateTime convertDateTime(String dateTime) {
+    public String convertDateTime(LocalDateTime dateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH':00'");
-        return LocalDateTime.parse(dateTime, formatter);
+        return dateTime.format(formatter);
     }
 
     public Integer getMinTemp(Integer day) {
@@ -108,6 +108,11 @@ public class WeatherInformation {
     public DayOfWeek getCurrentDay() {
         LocalDateTime currentDateTime = LocalDateTime.now();
         return currentDateTime.getDayOfWeek();
+    }
+
+    public String getCurrentDate() {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        return convertDateTime(currentDateTime).substring(0, 12);
     }
 
     public DayOfWeek getDaysAfter(Integer days) {

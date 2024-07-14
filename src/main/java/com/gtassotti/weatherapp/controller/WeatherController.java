@@ -121,6 +121,8 @@ public class WeatherController {
     private Label sixthTimeSlotTemp;
     @FXML
     private Label seventhTimeSlotTemp;
+    @FXML
+    private Label eighthTimeSlotTemp;
 
     private City currCity;
     private Weather currWeather;
@@ -154,6 +156,22 @@ public class WeatherController {
 
         } else {
             System.out.println("Error: No city name in the text field");
+        }
+    }
+
+    @FXML
+    protected void onClickSelect() {
+        List<ImageView> iconForecastList = Arrays.asList(firstDayWeather, secondDayWeather, thirdDayWeather, fourthDayWeather, fifthDayWeather, sixthDayWeather, seventhDayWeather);
+        List<Label> timeSlots = Arrays.asList(firstTimeSlotTemp, secondTimeSlotTemp, thirdTimeSlotTemp, fourthTimeSlotTemp,
+                                            fifthTimeSlotTemp, sixthTimeSlotTemp, seventhTimeSlotTemp, eighthTimeSlotTemp);
+        for (int i = 1; i <= iconForecastList.size(); i++) {
+            if (Objects.nonNull(iconForecastList.get(i).getImage())) {
+                iconForecastList.get(i).setOnMouseClicked(event -> {
+                    for (Label slot : timeSlots) {
+
+                    }
+                });
+            }
         }
     }
 
