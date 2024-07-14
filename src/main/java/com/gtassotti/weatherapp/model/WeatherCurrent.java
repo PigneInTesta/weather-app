@@ -50,7 +50,7 @@ public class WeatherCurrent {
         toWeatherInterpretationScript.put(80, "Slight Rain");
         toWeatherInterpretationScript.put(81, "Moderate Rain");
         toWeatherInterpretationScript.put(82, "Heavy Rain");
-        toWeatherInterpretationScript.put(85, "Slight Snow Showers");
+        toWeatherInterpretationScript.put(85, "Slight Snow Show ers");
         toWeatherInterpretationScript.put(86, "Slight Snow Showers");
         toWeatherInterpretationScript.put(95, "Slight Thunderstorm");
 

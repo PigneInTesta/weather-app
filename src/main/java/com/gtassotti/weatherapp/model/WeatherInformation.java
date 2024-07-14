@@ -90,31 +90,55 @@ public class WeatherInformation {
         return LocalDateTime.parse(dateTime, formatter);
     }
 
-    public String getCurrentDateTime() {
+    public Integer getMinTemp(Integer day) {
+        List<Double> tempListOfDay = getDataOfDay(day, temperatureList);
+        return Math.round(tempListOfDay.stream().min((o1, o2) -> o1.compareTo(o2)).orElseThrow(NoSuchElementException::new).floatValue());
+    }
+
+    public Integer getMaxTemp(Integer day) {
+        List<Double> tempListOfDay = getDataOfDay(day, temperatureList);
+        return Math.round(tempListOfDay.stream().max((o1, o2) -> o1.compareTo(o2)).orElseThrow(NoSuchElementException::new).floatValue());
+    }
+
+    public DayOfWeek getCurrentDay() {
         LocalDateTime currentDateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH':00'");
-        return currentDateTime.format(formatter);
+        return currentDateTime.getDayOfWeek();
     }
 
-    public Double getMinTemp(String dateTime) {
-        List<Double> tempListOfDay = getDataOfDay(getDayOfWeek(dateTime), temperatureList);
-        return tempListOfDay.stream().min((o1, o2) -> o1.compareTo(o2)).orElseThrow(NoSuchElementException::new);
+    public DayOfWeek getDaysAfter(Integer days) {
+        DayOfWeek startDate = getCurrentDay();
+        DayOfWeek endDate;
+        if (startDate.getValue() + days > DAYS_OF_WEEK) {
+            endDate = DayOfWeek.of(startDate.getValue() + days - DAYS_OF_WEEK);
+        } else {
+            endDate = DayOfWeek.of(startDate.getValue() + days);
+        }
+        return endDate;
     }
 
-    public Double getHighTemp(String dateTime) {
-        List<Double> tempListOfDay = getDataOfDay(getDayOfWeek(dateTime), temperatureList);
-        return tempListOfDay.stream().max((o1, o2) -> o1.compareTo(o2)).orElseThrow(NoSuchElementException::new);
+    public <T> List<T> getDataOfDay(Integer day, List<T> src) {
+        return new ArrayList<>(src.subList((day - 1) * 24, 24 + ((day - 1) * 24)));
     }
 
-    public DayOfWeek getDayOfWeek(String dateTime) {
-        return convertDateTime(dateTime).getDayOfWeek();
+    public String formatLabel(String day) {
+        return day.charAt(0) + day.substring(1,3).toLowerCase();
     }
 
-    public <T> List<T> getDataOfDay(DayOfWeek day, List<T> src) {
-        return new ArrayList<>(src.subList((day.getValue() - 1) * 24, 23 + ((day.getValue() - 1) * 24)));
+    public Integer getWeatherCodeOfTheDay (Integer indexOfTheDay) {
+        List<Integer> weatherCodeList = getDataOfDay(indexOfTheDay, weatherCode);
+        Map<Integer, Integer> weatherCodeAverage = new HashMap<>();
+        for (Integer code : weatherCodeList) {
+            if (weatherCodeAverage.containsKey(code)) {
+                weatherCodeAverage.put(code, weatherCodeAverage.get(code) + 1);
+            } else {
+                weatherCodeAverage.put(code, 1);
+            }
+        }
+
+        return Collections.max(weatherCodeAverage.entrySet(), Map.Entry.comparingByValue()).getKey();
     }
 
-    public String getWeatherIcon(DayOfWeek day) {
+    public String getWeatherIcon(Integer indexOfTheDay) {
         HashMap<Integer, String> toWeatherIcon = new HashMap<>();
 
         toWeatherIcon.put(0, "/icons/ClearSky.png");
@@ -142,18 +166,8 @@ public class WeatherInformation {
         toWeatherIcon.put(86, "/icons/SnowShowers.png");
         toWeatherIcon.put(95, "/icons/SlightThunderstorm.png");
 
-        List<Integer> weatherCodeList = getDataOfDay(day, weatherCode);
-        Map<Integer, Integer> weatherCodeAverage = new HashMap<>();
-        for (Integer code : weatherCodeList) {
-            if (weatherCodeAverage.containsKey(code)) {
-                weatherCodeAverage.put(code, weatherCodeAverage.get(code) + 1);
-            } else {
-                weatherCodeAverage.put(code, 1);
-            }
-        }
-
-        Integer weatherCodeOfTheDay = Collections.max(weatherCodeAverage.entrySet(), Map.Entry.comparingByValue()).getKey();
-        return toWeatherIcon.get(weatherCodeOfTheDay);
+        Integer weatherCode = getWeatherCodeOfTheDay(indexOfTheDay);
+        return toWeatherIcon.get(weatherCode);
     }
 
     @Override

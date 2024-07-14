@@ -34,7 +34,7 @@
                      <Font name="Segoe UI Semilight" size="48.0" />
                   </font>
                </Label>
-               <Label fx:id="weatherInformation" alignment="CENTER" layoutX="244.0" layoutY="168.0" prefHeight="25.0" prefWidth="117.0" textAlignment="CENTER">
+               <Label fx:id="weatherInformation" alignment="CENTER" contentDisplay="CENTER" layoutX="179.0" layoutY="168.0" prefHeight="35.0" prefWidth="249.0" textAlignment="CENTER">
                   <font>
                      <Font name="Segoe UI Semilight" size="24.0" />
                   </font>
@@ -55,12 +55,12 @@
                   </font>
                </Button>
                <ComboBox fx:id="results" editable="true" layoutX="403.0" layoutY="57.0" prefHeight="25.0" prefWidth="188.0" AnchorPane.rightAnchor="9.0" />
-               <HBox alignment="TOP_CENTER" layoutX="7.0" layoutY="332.0" prefHeight="100.0" prefWidth="586.0" spacing="40.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="6.666666666666629" AnchorPane.rightAnchor="7.0">
+               <HBox alignment="TOP_CENTER" layoutX="7.0" layoutY="332.0" prefHeight="100.0" prefWidth="586.0" spacing="40.0">
                   <children>
                      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                         <children>
-                           <Label text="Mon" />
-                           <ImageView fx:id="mondayWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" smooth="false" />
+                           <Label fx:id="firstDayLabel" text="Mon" />
+                           <ImageView fx:id="firstDayWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" smooth="false" />
                            <Label text="30%" />
                            <GridPane prefHeight="21.0" prefWidth="50.0">
                               <columnConstraints>
@@ -71,16 +71,16 @@
                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               </rowConstraints>
                               <children>
-                                 <Label fx:id="minTempMonday" text="11°" />
-                                 <Label fx:id="maxTempMonday" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="29.0" text="38°" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                 <Label fx:id="firstDayMinTemp" text="11°" />
+                                 <Label fx:id="firstDayMaxTemp" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="29.0" text="38°" textAlignment="CENTER" GridPane.columnIndex="1" />
                               </children>
                            </GridPane>
                         </children>
                      </VBox>
                      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                         <children>
-                           <Label text="Tue" />
-                           <ImageView fx:id="tuesdayWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label fx:id="secondDayLabel" text="Tue" />
+                           <ImageView fx:id="secondDayWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                            <Label text="30%" />
                            <GridPane prefHeight="21.0" prefWidth="50.0">
                              <columnConstraints>
@@ -91,16 +91,16 @@
                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                              </rowConstraints>
                               <children>
-                                 <Label text="11°" />
-                                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="29.0" text="38°" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                 <Label fx:id="secondDayMinTemp" text="11°" />
+                                 <Label fx:id="secondDayMaxTemp" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="29.0" text="38°" textAlignment="CENTER" GridPane.columnIndex="1" />
                               </children>
                            </GridPane>
                         </children>
                      </VBox>
                      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                         <children>
-                           <Label text="Wed" />
-                           <ImageView fx:id="wednesdayWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label fx:id="thirdDayLabel" text="Wed" />
+                           <ImageView fx:id="thirdDayWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                            <Label text="30%" />
                            <GridPane layoutX="10.0" layoutY="77.0" prefHeight="21.0" prefWidth="50.0">
                               <columnConstraints>
@@ -111,16 +111,16 @@
                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               </rowConstraints>
                               <children>
-                                 <Label text="11°" />
-                                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="29.0" text="38°" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                 <Label fx:id="thirdDayMinTemp" text="11°" />
+                                 <Label fx:id="thirdDayMaxTemp" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="29.0" text="38°" textAlignment="CENTER" GridPane.columnIndex="1" />
                               </children>
                            </GridPane>
                         </children>
                      </VBox>
                      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                         <children>
-                           <Label text="Thu" />
-                           <ImageView fx:id="thursdayWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label fx:id="fourthDayLabel" text="Thu" />
+                           <ImageView fx:id="fourthDayWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                            <Label text="30%" />
                            <GridPane layoutX="10.0" layoutY="77.0" prefHeight="21.0" prefWidth="50.0">
                               <columnConstraints>
@@ -131,16 +131,16 @@
                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               </rowConstraints>
                               <children>
-                                 <Label text="11°" />
-                                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="29.0" text="38°" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                 <Label fx:id="fourthDayMinTemp" text="11°" />
+                                 <Label fx:id="fourthDayMaxTemp" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="29.0" text="38°" textAlignment="CENTER" GridPane.columnIndex="1" />
                               </children>
                            </GridPane>
                         </children>
                      </VBox>
                      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                         <children>
-                           <Label text="Fri" />
-                           <ImageView fx:id="fridayWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label fx:id="fifthDayLabel" text="Fri" />
+                           <ImageView fx:id="fifthDayWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                            <Label text="30%" />
                            <GridPane prefHeight="21.0" prefWidth="50.0">
                               <columnConstraints>
@@ -151,16 +151,16 @@
                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               </rowConstraints>
                               <children>
-                                 <Label text="11°" />
-                                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="29.0" text="38°" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                 <Label fx:id="fifthDayMinTemp" text="11°" />
+                                 <Label fx:id="fifthDayMaxTemp" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="29.0" text="38°" textAlignment="CENTER" GridPane.columnIndex="1" />
                               </children>
                            </GridPane>
                         </children>
                      </VBox>
                      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                         <children>
-                           <Label text="Sat" />
-                           <ImageView fx:id="saturdayWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label fx:id="sixthDayLabel" text="Sat" />
+                           <ImageView fx:id="sixthDayWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                            <Label text="30%" />
                            <GridPane prefHeight="21.0" prefWidth="50.0">
                               <columnConstraints>
@@ -171,16 +171,16 @@
                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               </rowConstraints>
                               <children>
-                                 <Label text="11°" />
-                                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="29.0" text="38°" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                 <Label fx:id="sixthDayMinTemp" text="11°" />
+                                 <Label fx:id="sixthDayMaxTemp" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="29.0" text="38°" textAlignment="CENTER" GridPane.columnIndex="1" />
                               </children>
                            </GridPane>
                         </children>
                      </VBox>
                      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                         <children>
-                           <Label text="Sun" />
-                           <ImageView fx:id="sundayWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label fx:id="seventhDayLabel" text="Sun" />
+                           <ImageView fx:id="seventhDayWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
                            <Label text="30%" />
                            <GridPane prefHeight="21.0" prefWidth="50.0">
                               <columnConstraints>
@@ -191,8 +191,8 @@
                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               </rowConstraints>
                               <children>
-                                 <Label text="11°" />
-                                 <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="29.0" text="38°" textAlignment="CENTER" GridPane.columnIndex="1" />
+                                 <Label fx:id="seventhDayMinTemp" text="11°" />
+                                 <Label fx:id="seventhDayMaxTemp" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="29.0" text="38°" textAlignment="CENTER" GridPane.columnIndex="1" />
                               </children>
                            </GridPane>
                         </children>
