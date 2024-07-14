@@ -10,9 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -93,6 +92,36 @@ public class WeatherController {
     @FXML
     private Label seventhDayMaxTemp;
 
+    @FXML
+    private Label firstDayProbPrec;
+    @FXML
+    private Label secondDayProbPrec;
+    @FXML
+    private Label thirdDayProbPrec;
+    @FXML
+    private Label fourthDayProbPrec;
+    @FXML
+    private Label fifthDayProbPrec;
+    @FXML
+    private Label sixthDayProbPrec;
+    @FXML
+    private Label seventhDayProbPrec;
+
+    @FXML
+    private Label firstTimeSlotTemp;
+    @FXML
+    private Label secondTimeSlotTemp;
+    @FXML
+    private Label thirdTimeSlotTemp;
+    @FXML
+    private Label fourthTimeSlotTemp;
+    @FXML
+    private Label fifthTimeSlotTemp;
+    @FXML
+    private Label sixthTimeSlotTemp;
+    @FXML
+    private Label seventhTimeSlotTemp;
+
     private City currCity;
     private Weather currWeather;
     private List<City> citiesFounded;
@@ -121,13 +150,8 @@ public class WeatherController {
             setLowTemp();
             setHighTemp();
             setWeatherInformation();
-            setFirstDayWeather();
-            setSecondDayWeather();
-            setThirdDayWeather();
-            setFourthDayWeather();
-            setFifthDayWeather();
-            setSixthDayWeather();
-            setSeventhDayWeather();
+            setWeekForecast();
+
         } else {
             System.out.println("Error: No city name in the text field");
         }
@@ -153,59 +177,27 @@ public class WeatherController {
         weatherInformation.setText(currWeather.getCurrentInfo().getWeatherInterpretationScript());
     }
 
-    protected void setFirstDayWeather() {
-        firstDayLabel.setText("Today");
-        firstDayMaxTemp.setText(currWeather.getInformationHourly().getMaxTemp(1).toString()+ "°");
-        firstDayMinTemp.setText(currWeather.getInformationHourly().getMinTemp(1).toString()+ "°");
-        firstDayWeather.setImage(new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource(currWeather.getInformationHourly().getWeatherIcon(1))).toExternalForm())));
-    }
+    protected void setWeekForecast() {
+        List<Label> daysList = Arrays.asList(firstDayLabel, secondDayLabel, thirdDayLabel, fourthDayLabel, fifthDayLabel, sixthDayLabel, seventhDayLabel);
+        List<Label> maxTempList = Arrays.asList(firstDayMaxTemp, secondDayMaxTemp, thirdDayMaxTemp, fourthDayMaxTemp, fifthDayMaxTemp, sixthDayMaxTemp, seventhDayMaxTemp);
+        List<Label> minTempList = Arrays.asList(firstDayMinTemp, secondDayMinTemp, thirdDayMinTemp, fourthDayMinTemp, fifthDayMinTemp, sixthDayMinTemp, seventhDayMinTemp);
+        List<ImageView> iconForecastList = Arrays.asList(firstDayWeather, secondDayWeather, thirdDayWeather, fourthDayWeather, fifthDayWeather, sixthDayWeather, seventhDayWeather);
+        List<Label> probPrecList = Arrays.asList(firstDayProbPrec, secondDayProbPrec, thirdDayProbPrec, fourthDayProbPrec, fifthDayProbPrec, sixthDayProbPrec, seventhDayProbPrec);
 
-    protected void setSecondDayWeather() {
-        String secondDay = currWeather.getInformationHourly().getDaysAfter(1).toString();
-        secondDayLabel.setText(currWeather.getInformationHourly().formatLabel(secondDay));
-        secondDayMaxTemp.setText(currWeather.getInformationHourly().getMaxTemp(2).toString() + "°");
-        secondDayMinTemp.setText(currWeather.getInformationHourly().getMinTemp(2).toString() + "°");
-        secondDayWeather.setImage(new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource(currWeather.getInformationHourly().getWeatherIcon(2))).toExternalForm())));
-    }
-
-    protected void setThirdDayWeather() {
-        String thirdDay = currWeather.getInformationHourly().getDaysAfter(2).toString();
-        thirdDayLabel.setText(currWeather.getInformationHourly().formatLabel(thirdDay));
-        thirdDayMaxTemp.setText(currWeather.getInformationHourly().getMaxTemp(3).toString() + "°");
-        thirdDayMinTemp.setText(currWeather.getInformationHourly().getMinTemp(3).toString() + "°");
-        thirdDayWeather.setImage(new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource(currWeather.getInformationHourly().getWeatherIcon(3))).toExternalForm())));
-    }
-
-    protected void setFourthDayWeather() {
-        String fourthDay = currWeather.getInformationHourly().getDaysAfter(3).toString();
-        fourthDayLabel.setText(currWeather.getInformationHourly().formatLabel(fourthDay));
-        fourthDayMaxTemp.setText(currWeather.getInformationHourly().getMaxTemp(4).toString() + "°");
-        fourthDayMinTemp.setText(currWeather.getInformationHourly().getMinTemp(4).toString() + "°");
-        fourthDayWeather.setImage(new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource(currWeather.getInformationHourly().getWeatherIcon(4))).toExternalForm())));
-    }
-
-    protected void setFifthDayWeather() {
-        String fifthDay = currWeather.getInformationHourly().getDaysAfter(4).toString();
-        fifthDayLabel.setText(currWeather.getInformationHourly().formatLabel(fifthDay));
-        fifthDayMaxTemp.setText(currWeather.getInformationHourly().getMaxTemp(5).toString() + "°");
-        fifthDayMinTemp.setText(currWeather.getInformationHourly().getMinTemp(5).toString() + "°");
-        fifthDayWeather.setImage(new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource(currWeather.getInformationHourly().getWeatherIcon(5))).toExternalForm())));
-    }
-
-    protected void setSixthDayWeather() {
-        String sixthDay = currWeather.getInformationHourly().getDaysAfter(5).toString();
-        sixthDayLabel.setText(currWeather.getInformationHourly().formatLabel(sixthDay));
-        sixthDayMaxTemp.setText(currWeather.getInformationHourly().getMaxTemp(6).toString() + "°");
-        sixthDayMinTemp.setText(currWeather.getInformationHourly().getMinTemp(6).toString() + "°");
-        sixthDayWeather.setImage(new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource(currWeather.getInformationHourly().getWeatherIcon(6))).toExternalForm())));
-    }
-
-    protected void setSeventhDayWeather() {
-        String seventhDay = currWeather.getInformationHourly().getDaysAfter(6).toString();
-        seventhDayLabel.setText(currWeather.getInformationHourly().formatLabel(seventhDay));
-        seventhDayMaxTemp.setText(currWeather.getInformationHourly().getMaxTemp(7).toString() + "°");
-        seventhDayMinTemp.setText(currWeather.getInformationHourly().getMinTemp(7).toString() + "°");
-        seventhDayWeather.setImage(new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource(currWeather.getInformationHourly().getWeatherIcon(7))).toExternalForm())));
+        StringBuilder day = new StringBuilder();
+        for (int i = 1; i <= daysList.size(); i++) {
+            if (i == 1) {
+                daysList.getFirst().setText("Today");
+            } else {
+                day.append(currWeather.getInformationHourly().getDaysAfter(i - 1).toString());
+                daysList.get(i - 1).setText(currWeather.getInformationHourly().formatLabel(day.toString()));
+            }
+            maxTempList.get(i - 1).setText(currWeather.getInformationHourly().getMaxTemp(i).toString()+ "°");
+            minTempList.get(i - 1).setText(currWeather.getInformationHourly().getMinTemp(i).toString()+ "°");
+            iconForecastList.get(i - 1).setImage(new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource(currWeather.getInformationHourly().getWeatherIcon(i))).toExternalForm())));
+            probPrecList.get(i - 1).setText("☂ " + currWeather.getInformationHourly().avgProbabilityOfPrecipitation(i).toString() + "%");
+            day.delete(0, day.length());
+        }
     }
 
     protected void search() {

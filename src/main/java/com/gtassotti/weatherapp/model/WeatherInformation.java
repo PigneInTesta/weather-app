@@ -65,6 +65,11 @@ public class WeatherInformation {
         this.probabilityOfPrecipitation = probabilityOfPrecipitation;
     }
 
+    public Integer avgProbabilityOfPrecipitation(Integer indexOfTheDay) {
+        List<Integer> probOfPrecipitationOfDay = getDataOfDay(indexOfTheDay, probabilityOfPrecipitation);
+        return (int) probOfPrecipitationOfDay.stream().mapToInt(p -> p).average().orElse(0);
+    }
+
     public List<Double> getPrecipitationSum() {
         return precipitationSum;
     }
