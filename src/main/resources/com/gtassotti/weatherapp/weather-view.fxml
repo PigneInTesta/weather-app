@@ -55,63 +55,63 @@
                   </font>
                </Button>
                <ComboBox fx:id="results" editable="true" layoutX="403.0" layoutY="57.0" prefHeight="25.0" prefWidth="188.0" AnchorPane.rightAnchor="9.0" />
-               <Label layoutX="7.0" layoutY="184.0" text="Label" />
+               <Label fx:id="daySelected" layoutX="7.0" layoutY="184.0" />
                <HBox alignment="TOP_CENTER" layoutX="3.0" layoutY="210.0" prefHeight="100.0" prefWidth="595.0" spacing="25.0">
                   <children>
                      <VBox alignment="TOP_CENTER">
                         <children>
                            <Label text="2:00" />
-                           <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" smooth="false" />
-                           <Label fx:id="firstTimeSlotTemp" text="30%" />
+                           <ImageView fx:id="firstTimeSlotWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" smooth="false" />
+                           <Label fx:id="firstTimeSlotTemp" />
                         </children>
                      </VBox>
                      <VBox alignment="TOP_CENTER">
                         <children>
                            <Label text="5:00" />
-                           <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-                           <Label fx:id="secondTimeSlotTemp" text="30%" />
+                           <ImageView fx:id="secondTimeSlotWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label fx:id="secondTimeSlotTemp" />
                         </children>
                      </VBox>
                      <VBox alignment="TOP_CENTER">
                         <children>
                            <Label text="8:00" />
-                           <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-                           <Label fx:id="thirdTimeSlotTemp" text="30%" />
+                           <ImageView fx:id="thirdTimeSlotWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label fx:id="thirdTimeSlotTemp" />
                         </children>
                      </VBox>
                      <VBox alignment="TOP_CENTER">
                         <children>
                            <Label text="11:00" />
-                           <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-                           <Label fx:id="fourthTimeSlotTemp" text="30%" />
+                           <ImageView fx:id="fourthTimeSlotWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label fx:id="fourthTimeSlotTemp" />
                         </children>
                      </VBox>
                      <VBox alignment="TOP_CENTER">
                         <children>
                            <Label text="14:00" />
-                           <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-                           <Label fx:id="fifthTimeSlotTemp" text="30%" />
+                           <ImageView fx:id="fifthTimeSlotWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label fx:id="fifthTimeSlotTemp" />
                         </children>
                      </VBox>
                      <VBox alignment="TOP_CENTER">
                         <children>
                            <Label text="17:00" />
-                           <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-                           <Label fx:id="sixthTimeSlotTemp" text="30%" />
+                           <ImageView fx:id="sixthTimeSlotWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label fx:id="sixthTimeSlotTemp" />
                         </children>
                      </VBox>
                      <VBox alignment="TOP_CENTER">
                         <children>
                            <Label text="20:00" />
-                           <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-                           <Label fx:id="seventhTimeSlotTemp" text="30%" />
+                           <ImageView fx:id="seventhTimeSlotWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label fx:id="seventhTimeSlotTemp" />
                         </children>
                      </VBox>
                      <VBox alignment="TOP_CENTER" layoutX="493.0" layoutY="10.0">
                         <children>
                            <Label text="23:00" />
-                           <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-                           <Label fx:id="eighthTimeSlotTemp" text="30%" />
+                           <ImageView fx:id="eighthTimeSlotWeather" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                           <Label fx:id="eighthTimeSlotTemp" />
                         </children>
                      </VBox>
                   </children>

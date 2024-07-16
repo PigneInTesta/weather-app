@@ -90,19 +90,19 @@ public class WeatherInformation {
         return dst.get(timeList.indexOf(dateTime));
     }
 
-    public String convertDateTime(LocalDateTime dateTime) {
+    public static String convertDateTime(LocalDateTime dateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH':00'");
         return dateTime.format(formatter);
     }
 
     public Integer getMinTemp(Integer day) {
         List<Double> tempListOfDay = getDataOfDay(day, temperatureList);
-        return Math.round(tempListOfDay.stream().min((o1, o2) -> o1.compareTo(o2)).orElseThrow(NoSuchElementException::new).floatValue());
+        return Math.round(tempListOfDay.stream().min(Double::compareTo).orElseThrow(NoSuchElementException::new).floatValue());
     }
 
     public Integer getMaxTemp(Integer day) {
         List<Double> tempListOfDay = getDataOfDay(day, temperatureList);
-        return Math.round(tempListOfDay.stream().max((o1, o2) -> o1.compareTo(o2)).orElseThrow(NoSuchElementException::new).floatValue());
+        return Math.round(tempListOfDay.stream().max(Double::compareTo).orElseThrow(NoSuchElementException::new).floatValue());
     }
 
     public DayOfWeek getCurrentDay() {
@@ -110,7 +110,7 @@ public class WeatherInformation {
         return currentDateTime.getDayOfWeek();
     }
 
-    public String getCurrentDate() {
+    public static String getCurrentDate() {
         LocalDateTime currentDateTime = LocalDateTime.now();
         return convertDateTime(currentDateTime).substring(0, 12);
     }
@@ -148,7 +148,7 @@ public class WeatherInformation {
         return Collections.max(weatherCodeAverage.entrySet(), Map.Entry.comparingByValue()).getKey();
     }
 
-    public String getWeatherIcon(Integer indexOfTheDay) {
+    public String getWeatherIcon(Integer weatherCode) {
         HashMap<Integer, String> toWeatherIcon = new HashMap<>();
 
         toWeatherIcon.put(0, "/icons/ClearSky.png");
@@ -176,7 +176,6 @@ public class WeatherInformation {
         toWeatherIcon.put(86, "/icons/SnowShowers.png");
         toWeatherIcon.put(95, "/icons/SlightThunderstorm.png");
 
-        Integer weatherCode = getWeatherCodeOfTheDay(indexOfTheDay);
         return toWeatherIcon.get(weatherCode);
     }
 

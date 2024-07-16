@@ -3,6 +3,7 @@ package com.gtassotti.weatherapp.controller;
 import com.gtassotti.weatherapp.model.API;
 import com.gtassotti.weatherapp.model.City;
 import com.gtassotti.weatherapp.model.Weather;
+import com.gtassotti.weatherapp.model.WeatherInformation;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -124,6 +125,26 @@ public class WeatherController {
     @FXML
     private Label eighthTimeSlotTemp;
 
+    @FXML
+    private ImageView firstTimeSlotWeather;
+    @FXML
+    private ImageView secondTimeSlotWeather;
+    @FXML
+    private ImageView thirdTimeSlotWeather;
+    @FXML
+    private ImageView fourthTimeSlotWeather;
+    @FXML
+    private ImageView fifthTimeSlotWeather;
+    @FXML
+    private ImageView sixthTimeSlotWeather;
+    @FXML
+    private ImageView seventhTimeSlotWeather;
+    @FXML
+    private ImageView eighthTimeSlotWeather;
+
+    @FXML
+    private Label daySelected;
+
     private City currCity;
     private Weather currWeather;
     private List<City> citiesFounded;
@@ -162,16 +183,30 @@ public class WeatherController {
     @FXML
     protected void onClickSelect() {
         List<ImageView> iconForecastList = Arrays.asList(firstDayWeather, secondDayWeather, thirdDayWeather, fourthDayWeather, fifthDayWeather, sixthDayWeather, seventhDayWeather);
-        List<Label> timeSlots = Arrays.asList(firstTimeSlotTemp, secondTimeSlotTemp, thirdTimeSlotTemp, fourthTimeSlotTemp,
-                                            fifthTimeSlotTemp, sixthTimeSlotTemp, seventhTimeSlotTemp, eighthTimeSlotTemp);
-        for (int i = 1; i <= iconForecastList.size(); i++) {
+        for (int i = 0; i < iconForecastList.size(); i++) {
             if (Objects.nonNull(iconForecastList.get(i).getImage())) {
-                iconForecastList.get(i).setOnMouseClicked(event -> {
-                    for (Label slot : timeSlots) {
-
-                    }
-                });
+                int finalI = i + 1;
+                iconForecastList.get(i).setOnMouseClicked(event -> updateDayForecast(finalI));
             }
+        }
+    }
+
+    protected void updateDayForecast(int day) {
+        List<Label> timeSlotsTemp = Arrays.asList(firstTimeSlotTemp, secondTimeSlotTemp, thirdTimeSlotTemp, fourthTimeSlotTemp,
+                fifthTimeSlotTemp, sixthTimeSlotTemp, seventhTimeSlotTemp, eighthTimeSlotTemp);
+        List<ImageView> timeSlotsWeather = Arrays.asList(firstTimeSlotWeather, secondTimeSlotWeather, thirdTimeSlotWeather, fourthTimeSlotWeather,
+                fifthTimeSlotWeather, sixthTimeSlotWeather, seventhTimeSlotWeather, eighthTimeSlotWeather);
+
+        daySelected.setText(WeatherInformation.getCurrentDate());
+        int hour = 2;
+        for (int i = 0; i < timeSlotsTemp.size(); i++) {
+            List<Double> temperatureOfDay = currWeather.getInformationHourly().getDataOfDay(day, currWeather.getInformationHourly().getTemperatureList());
+            List<Integer> weatherOfDay = currWeather.getInformationHourly().getDataOfDay(day, currWeather.getInformationHourly().getWeatherCode());
+            int tempAtHour = Math.round(temperatureOfDay.get(hour).floatValue());
+            //Image weatherAtHour = currWeather.getInformationHourly().getWeatherIcon(weatherOfDay.get(hour));
+            hour += 3;
+            timeSlotsTemp.get(i).setText(tempAtHour + "°");
+            //timeSlotsWeather.get(i).setImage();
         }
     }
 
