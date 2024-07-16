@@ -179,6 +179,10 @@ public class WeatherInformation {
         return toWeatherIcon.get(weatherCode);
     }
 
+    public String getWeatherIconOfTheDay(Integer indexOfTheDay) {
+        return getWeatherIcon(getWeatherCodeOfTheDay(indexOfTheDay));
+    }
+
     @Override
     public String toString() {
         return "WeatherInformation{" +

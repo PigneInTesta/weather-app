@@ -203,10 +203,10 @@ public class WeatherController {
             List<Double> temperatureOfDay = currWeather.getInformationHourly().getDataOfDay(day, currWeather.getInformationHourly().getTemperatureList());
             List<Integer> weatherOfDay = currWeather.getInformationHourly().getDataOfDay(day, currWeather.getInformationHourly().getWeatherCode());
             int tempAtHour = Math.round(temperatureOfDay.get(hour).floatValue());
-            //Image weatherAtHour = currWeather.getInformationHourly().getWeatherIcon(weatherOfDay.get(hour));
+            Image weatherAtHour = new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource(currWeather.getInformationHourly().getWeatherIcon(weatherOfDay.get(hour)))).toExternalForm()));
             hour += 3;
             timeSlotsTemp.get(i).setText(tempAtHour + "°");
-            //timeSlotsWeather.get(i).setImage();
+            timeSlotsWeather.get(i).setImage(weatherAtHour);
         }
     }
 
@@ -247,7 +247,7 @@ public class WeatherController {
             }
             maxTempList.get(i - 1).setText(currWeather.getInformationHourly().getMaxTemp(i).toString()+ "°");
             minTempList.get(i - 1).setText(currWeather.getInformationHourly().getMinTemp(i).toString()+ "°");
-            iconForecastList.get(i - 1).setImage(new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource(currWeather.getInformationHourly().getWeatherIcon(i))).toExternalForm())));
+            iconForecastList.get(i - 1).setImage(new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource(currWeather.getInformationHourly().getWeatherIconOfTheDay(i))).toExternalForm())));
             probPrecList.get(i - 1).setText("☂ " + currWeather.getInformationHourly().avgProbabilityOfPrecipitation(i).toString() + "%");
             day.delete(0, day.length());
         }
