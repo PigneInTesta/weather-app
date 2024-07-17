@@ -3,7 +3,6 @@ package com.gtassotti.weatherapp.controller;
 import com.gtassotti.weatherapp.model.API;
 import com.gtassotti.weatherapp.model.City;
 import com.gtassotti.weatherapp.model.Weather;
-import com.gtassotti.weatherapp.model.WeatherInformation;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -197,7 +196,7 @@ public class WeatherController {
         List<ImageView> timeSlotsWeather = Arrays.asList(firstTimeSlotWeather, secondTimeSlotWeather, thirdTimeSlotWeather, fourthTimeSlotWeather,
                 fifthTimeSlotWeather, sixthTimeSlotWeather, seventhTimeSlotWeather, eighthTimeSlotWeather);
 
-        daySelected.setText(WeatherInformation.getCurrentDate());
+        daySelected.setText(currWeather.getInformationHourly().getDaysAfter(day - 1).toString());
         int hour = 2;
         for (int i = 0; i < timeSlotsTemp.size(); i++) {
             List<Double> temperatureOfDay = currWeather.getInformationHourly().getDataOfDay(day, currWeather.getInformationHourly().getTemperatureList());

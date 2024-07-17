@@ -105,7 +105,7 @@ public class WeatherInformation {
         return Math.round(tempListOfDay.stream().max(Double::compareTo).orElseThrow(NoSuchElementException::new).floatValue());
     }
 
-    public DayOfWeek getCurrentDay() {
+    public static DayOfWeek getCurrentDay() {
         LocalDateTime currentDateTime = LocalDateTime.now();
         return currentDateTime.getDayOfWeek();
     }
