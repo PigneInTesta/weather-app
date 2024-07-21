@@ -3,9 +3,7 @@ package com.gtassotti.weatherapp.controller;
 import com.gtassotti.weatherapp.model.API;
 import com.gtassotti.weatherapp.model.City;
 import com.gtassotti.weatherapp.model.Weather;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -27,8 +25,6 @@ public class WeatherController {
     private Label highTemp;
     @FXML
     private TextField cityToSearch;
-    @FXML
-    private ComboBox<City> results;
     @FXML
     private Label weatherInformation;
 
@@ -146,20 +142,11 @@ public class WeatherController {
 
     private City currCity;
     private Weather currWeather;
-    private List<City> citiesFounded;
-
-    @FXML
-    protected void initialize()  {
-        //setTemperature();
-        results.setEditable(true);
-        results.setVisibleRowCount(10);
-        search();
-    }
 
     @FXML
     protected void onButtonClickSearch() {
         if (!cityToSearch.getText().isEmpty()){
-            citiesFounded = new ArrayList<>(API.getCityData(cityToSearch.getText()));
+            List<City> citiesFounded = new ArrayList<>(API.getCityData(cityToSearch.getText()));
             currWeather = API.getWeatherData(citiesFounded.getFirst());
             currCity = new City(citiesFounded.getFirst().getId(),
                                 citiesFounded.getFirst().getName(),
@@ -173,7 +160,6 @@ public class WeatherController {
             setHighTemp();
             setWeatherInformation();
             setWeekForecast();
-
         } else {
             System.out.println("Error: No city name in the text field");
         }
@@ -250,17 +236,6 @@ public class WeatherController {
             probPrecList.get(i - 1).setText("☂ " + currWeather.getInformationHourly().avgProbabilityOfPrecipitation(i).toString() + "%");
             day.delete(0, day.length());
         }
-    }
-
-    protected void search() {
-        results.getEditor().textProperty().addListener(((obs, oldValue, newValue) -> {
-            if (!results.getItems().isEmpty()) {
-                results.getItems().clear();
-            } else {
-                results.getItems().setAll(FXCollections.observableArrayList(API.getCityData(obs.getValue())));
-                results.show();
-            }
-        }));
     }
 
 }
